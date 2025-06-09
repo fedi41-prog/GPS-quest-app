@@ -1,6 +1,18 @@
-<BoxLayout>:
-    orientation: 'vertical'
-    Label:
-        text: "GPS quest (:"
-        font_size: 64
-        color: 0.9882352941176471, 0.7294117647058824, 0.0117647058823529
+MainScreen:
+    text_label: lbl_info
+
+    MDBoxLayout:
+        orientation: "vertical"
+        padding: dp(20)
+        spacing: dp(20)
+
+        MDLabel:
+            id: lbl_info
+            text: "Warte auf GPS-Daten..."
+            halign: "center"
+            font_style: "H5"
+
+        MDRaisedButton:
+            text: "Setze aktuellen Standort als Ziel"
+            pos_hint: {"center_x": 0.5}
+            on_release: app.set_current_as_target()
