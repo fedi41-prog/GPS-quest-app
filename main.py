@@ -1,31 +1,3 @@
-import os
-from android.storage import primary_external_storage_path
-import sys
-from datetime import datetime
-
-class LogWriter:
-    def __init__(self, filename="gpsquest_log.txt"):
-        # 📂 Speicherpfad auf dem "internen Speicher" des Handys
-        base_path = primary_external_storage_path()
-        self.filepath = os.path.join(base_path, filename)
-
-        # 🕓 App-Start-Zeit loggen
-        with open(self.filepath, "a", encoding="utf-8") as f:
-            f.write(f"\n\n--- App gestartet: {datetime.now()} ---\n")
-
-    def write(self, message):
-        try:
-            with open(self.filepath, "a", encoding="utf-8") as f:
-                f.write(message)
-        except Exception:
-            pass
-
-    def flush(self):
-        pass
-
-# 🎯 Logs umleiten
-sys.stdout = sys.stderr = LogWriter()
-
 from math import radians, cos, sqrt, sin, atan2
 
 import kivy
@@ -79,9 +51,7 @@ class GpsQuestApp(MDApp):
         if ANDROID:
             request_permissions([
                 Permission.ACCESS_FINE_LOCATION,
-                Permission.ACCESS_COARSE_LOCATION,
-                Permission.WRITE_EXTERNAL_STORAGE,
-                Permission.READ_EXTERNAL_STORAGE
+                Permission.ACCESS_COARSE_LOCATION
             ])
         else:
             print("Running on Desktop, keine Laufzeit-Permissions nötig.")
