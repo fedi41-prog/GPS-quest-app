@@ -8,7 +8,7 @@ from kivy.utils import platform
 from kivymd.app import MDApp
 from kivymd.uix.screen import MDScreen
 
-from gps_helper import GpsHelper
+from gps import GpsHelper
 
 kivy.require("2.0.0")
 
@@ -41,6 +41,7 @@ class GpsQuestApp(MDApp):
             self.gps.update_target(self.gps.lat, self.gps.lon)
         else:
             self.screen.updateLabel("GPS daten sind noch nicht geladen")
+            self.gps.get_last_known_location()
 
 
 if __name__ == "__main__":

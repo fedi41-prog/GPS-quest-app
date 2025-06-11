@@ -21,6 +21,7 @@ def haversine(lat1, lon1, lat2, lon2):
 
 class GpsHelper:
     def __init__(self):
+        print("starting GpsHelper...")
 
         self.app = App.get_running_app()
 

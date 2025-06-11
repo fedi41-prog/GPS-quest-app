@@ -6,10 +6,10 @@ android.services = gps
 title = GPS quest
 
 # (str) Package name
-package.name = gpsquestapp
+package.name = gpsquest
 
 # (str) Package domain (needed for android/ios packaging)
-package.domain = org.croco
+package.domain = com.fedi4
 
 # (str) Source code where the main.py live
 source.dir = .
@@ -39,7 +39,7 @@ version = 0.1
 
 # (list) Application requirements
 # comma separated e.g. requirements = sqlite3,kivy
-requirements = python3, kivymd, kivy, plyer>=2.0.0, android, jnius
+requirements = python3,kivy,kivymd,android,jnius
 
 # (str) Custom source folders for requirements
 # Sets custom source for any requirements with recipes
