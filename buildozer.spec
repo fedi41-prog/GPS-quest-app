@@ -6,16 +6,16 @@ android.services = gps
 title = GPS quest
 
 # (str) Package name
-package.name = gpsquestapp
+package.name = gpsquest
 
 # (str) Package domain (needed for android/ios packaging)
-package.domain = org.croco
+package.domain = com.fedi4
 
 # (str) Source code where the main.py live
 source.dir = .
 
 # (list) Source files to include (let empty to include all the files)
-source.include_exts = py,png,jpg,kv,atlas
+source.include_exts = py,png,jpg,kv,atlas,json
 
 # (list) List of inclusions using pattern matching
 #source.include_patterns = assets/*,images/*.png
@@ -39,7 +39,7 @@ version = 0.1
 
 # (list) Application requirements
 # comma separated e.g. requirements = sqlite3,kivy
-requirements = python3, kivymd, kivy, plyer>=2.0.0, android, jnius
+requirements = python3, kivymd, kivy, https://github.com/HyTurtle/plyer/archive/master.zip, android
 
 # (str) Custom source folders for requirements
 # Sets custom source for any requirements with recipes
@@ -97,7 +97,7 @@ fullscreen = 0
 
 # (list) Permissions
 # (See https://python-for-android.readthedocs.io/en/latest/buildoptions/#build-options-1 for all the supported syntaxes and properties)
-android.permissions = INTERNET, ACCESS_FINE_LOCATION, ACCESS_COARSE_LOCATION
+android.permissions = INTERNET, ACCESS_FINE_LOCATION, ACCESS_COARSE_LOCATION, VIBRATE
 
 # (list) features (adds uses-feature -tags to manifest)
 #android.features = android.hardware.usb.host

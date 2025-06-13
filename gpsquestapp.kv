@@ -1,18 +1,28 @@
 MainScreen:
-    text_label: lbl_info
+    name: "main"
 
     MDBoxLayout:
         orientation: "vertical"
-        padding: dp(20)
-        spacing: dp(20)
+
+        status_label: status_label
+        middle_label: middle_label
 
         MDLabel:
-            id: lbl_info
-            text: "Warte auf GPS-Daten..."
+            id: middle_label
+            text: "moin"
             halign: "center"
-            font_style: "H5"
+            font_size: '34sp'
 
-        MDRaisedButton:
-            text: "Setze aktuellen Standort als Ziel"
-            pos_hint: {"center_x": 0.5}
-            on_release: app.set_current_as_target()
+        MDTopAppBar:
+            title: "GPS-Quest"
+            elevation: 2
+
+        MDLabel:
+            id: status_label
+            text: "Warte auf GPS..."
+            size_hint_y: None
+            height: dp(40)
+            halign: "center"
+            theme_text_color: "Custom"
+            text_color: 1, 1, 1, 1
+            md_bg_color: 0.2, 0.2, 0.2, 1
