@@ -28,6 +28,21 @@ class MainScreen(MDScreen):
         self.app = MDApp.get_running_app()
         self.dialog_open = False
 
+    def win(self):
+        self.ids.status_label.text = "🎉 Du hast alle Aufgaben gelöst! 🎉"
+        self.ids.status_label.md_bg_color = (0, 0.6, 0, 1)  # Grün
+
+        # Optional: Hintergrundfarbe ändern
+        self.md_bg_color = (0.8, 1.0, 0.8, 1)  # hellgrün als Hintergrund
+
+        # Optional: autom. Rücksetzung nach 5 Sekunden
+        Clock.schedule_once(self.reset_screen_appearance, 5.0)
+
+    def reset_screen_appearance(self, dt):
+        self.ids.status_label.text = ""
+        self.ids.status_label.md_bg_color = (0.2, 0.2, 0.2, 1)
+        self.md_bg_color = (1, 1, 1, 1)  # Standard-Hintergrund (weiß)
+
     def set_status_color_to_normal(self, dt):
         self.ids.status_label.md_bg_color = (0.2, 0.2, 0.2, 1)
 
@@ -49,6 +64,8 @@ class MainScreen(MDScreen):
                 if new_level != "<end>":
                     self.app.level = new_level
                     self.app.gps.update_target()
+                else:
+                    self.win()
             else:
                 self.ids.status_label.text = "Falsch."
                 self.ids.status_label.md_bg_color = (0.8, 0.2, 0.2, 1)
@@ -58,6 +75,8 @@ class MainScreen(MDScreen):
                 if new_level != "<end>":
                     self.app.level = new_level
                     self.app.gps.update_target()
+                else:
+                    self.win()
 
             self.dialog_open = False
 
@@ -92,6 +111,8 @@ class MainScreen(MDScreen):
                 if new_level != "<end>":
                     self.app.level = new_level  # <- fix: level speichern im App-Objekt
                     self.app.gps.update_target()
+                else:
+                    self.win()
             else:
                 self.ids.status_label.text = "Falsch."
                 self.ids.status_label.md_bg_color = (0.8, 0.2, 0.2, 1)
@@ -101,6 +122,8 @@ class MainScreen(MDScreen):
                 if new_level != "<end>":
                     self.app.level = new_level  # <- fix: level speichern im App-Objekt
                     self.app.gps.update_target()
+                else:
+                    self.win()
 
 
             self.dialog_open = False
@@ -120,19 +143,20 @@ class MainScreen(MDScreen):
             self.dialog.open()
             self.dialog_open = True
 
-    def show_hint_dialog(self, hint):
+    def show_hint_dialog(self, key):
+        hint = self.app.quest[self.app.level]["distances"][key]["text"]
+
         def on_button_click(button_instance):
             self.dialog.dismiss()
             self.dialog_open = False
             self.app.gps.shown.add(key)
 
         if not self.dialog_open:
-
             self.dialog = MDDialog(
                 title="Tipp: ",
                 text=hint,
-                buttons = [MDFlatButton(text="schließen", on_release=on_button_click)],
-                auto_dismiss=False  # verhindert Schließen durch Tippen außerhalb oder ESC
+                buttons=[MDFlatButton(text="Schließen", on_release=on_button_click)],
+                auto_dismiss=False
             )
             self.dialog.open()
             self.dialog_open = True

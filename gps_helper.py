@@ -133,7 +133,7 @@ class GpsHelper:
                     vibrator.vibrate(time=0.3)
 
             if self.distances[key]["type"] == "hint":
-                self.app.screen.show_hint_dialog(self.distances[key]["text"])
+                self.app.screen.show_hint_dialog(key)
             elif self.distances[key]["type"] == "choose":
                 self.app.screen.show_multiple_choice_dialog(key)
             elif self.distances[key]["type"] == "text":
