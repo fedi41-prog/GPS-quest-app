@@ -1,28 +1,37 @@
 MainScreen:
-    name: "main"
+    md_bg_color: 1, 1, 1, 1
 
     MDBoxLayout:
-        orientation: "vertical"
+        orientation: 'vertical'
+        padding: dp(8)  # <- Abstand zur Außenkante (Rahmen-Effekt)
+        canvas.before:
+            Color:
+                rgba: 0.1, 0.6, 0.9, 1  # Farbe des Rahmens (z. B. blau)
+            RoundedRectangle:
+                pos: self.pos
+                size: self.size
+                radius: [16]
 
-        status_label: status_label
-        middle_label: middle_label
+        MDBoxLayout:
+            orientation: 'vertical'
+            spacing: dp(10)
+            padding: dp(10)
+            md_bg_color: 1, 1, 1, 1
+            radius: [12]
 
-        MDLabel:
-            id: middle_label
-            text: "moin"
-            halign: "center"
-            font_size: '34sp'
+            MDLabel:
+                id: status_label
+                text: "Status..."
+                halign: "center"
+                size_hint_y: None
+                height: dp(40)
+                theme_text_color: "Custom"
+                text_color: 1, 1, 1, 1
 
-        MDTopAppBar:
-            title: "GPS-Quest"
-            elevation: 2
 
-        MDLabel:
-            id: status_label
-            text: "Warte auf GPS..."
-            size_hint_y: None
-            height: dp(40)
-            halign: "center"
-            theme_text_color: "Custom"
-            text_color: 1, 1, 1, 1
-            md_bg_color: 0.2, 0.2, 0.2, 1
+
+            MDLabel:
+                id: middle_label
+                text: "Info"
+                halign: "center"
+                font_size: "34dp"

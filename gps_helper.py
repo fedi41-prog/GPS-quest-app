@@ -62,6 +62,7 @@ class GpsHelper:
             except NotImplementedError:
                 print("GPS is not implemented on your platform")
 
+
     def update_target(self):
         self.target_lat = self.app.quest[self.app.level]["lat"]
         self.target_lon = self.app.quest[self.app.level]["lon"]
@@ -80,6 +81,10 @@ class GpsHelper:
 
         print("on gps location...")
 
+        if self.app.screen.state == "win":
+            self.update_status()
+            return
+
         lat = kwargs['lat']
         lon = kwargs['lon']
         accuracy = kwargs.get('accuracy', 100)  # in m
@@ -88,7 +93,7 @@ class GpsHelper:
         # Zu ungenau? Dann Status setzen und abbrechen
         if accuracy > 20:
             self.state = "kein_fix"
-            self.app.screen.updateStatus("Warte auf besseres GPS")
+            self.update_status()
             return
 
         # Entfernung berechnen
@@ -111,8 +116,18 @@ class GpsHelper:
         self.lat = lat
         self.lon = lon
 
+        self.update_status()
+
+    def update_status(self):
         # Statusanzeige
-        if self.state == "kein fix":
+        if self.app.screen.state == "win":
+            self.app.screen.set_status_color_mode("green")
+            self.app.screen.updateStatus("happy happy happy")
+            self.app.screen.updateMiddleLabel("Du hast alle Aufgaben gelöst!")
+            return
+
+        if self.state == "kein_fix":
+            self.app.screen.set_status_color_mode("gray")
             status = "Warte auf besseres GPS"
         elif self.state == "entfernt":
             status = "Du bist zu weit weg!"
@@ -120,7 +135,9 @@ class GpsHelper:
                 if vibrator.exists():
                     vibrator.vibrate(time=0.1)
         else:
-            status = "..."
+            status = "Finde das Ziel! (:"
+            if self.app.screen.state == "":
+                self.app.screen.set_status_color_mode("rainbow")
         self.app.screen.updateStatus(status)
         print(self.state)
 

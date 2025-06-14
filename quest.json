@@ -5,7 +5,7 @@
     "text": "gehe zur Rutsche (: gehe zur Rutsche (: gehe zur Rutsche (: gehe zur Rutsche (:",
     "border": 250,
     "distances": {
-      "3": {
+      "1000": {
         "type": "choose",
         "text": "bist du dumm oder so?",
         "answers": ["nö", "auf keinen fall!", "na klar"],
@@ -13,7 +13,7 @@
         "link": "2", 
 		"wlink": "start"
       },
-      "15": {
+      "1500": {
         "type" : "hint",
         "text" : "du bist in der nähe..."
       }
@@ -25,14 +25,14 @@
     "text": "gehe zum drehdings",
     "border": 250,
     "distances": {
-      "3": {
+      "1000": {
         "type": "text",
         "text": "bist du dumm oder so?",
         "answers": ["jup", "ja", "na klar"],
         "link": "3",
 		"wlink": "start"
       },
-      "15": {
+      "1500": {
         "type" : "hint",
         "text" : "du bist in der nähe... 2"
       }
@@ -42,16 +42,16 @@
     "lat": 51.328199, 
     "lon": 12.332509,
     "text": "gehe zum bbbpl lll lll llstjost tohwohtwroh wrthwohohwohwrtohwriohwrothtwrhowthroitwhtowhtoihwothdzzdtndn uftut fttun",
-    "border": 250,
+    "border": 1000,
     "distances": {
-      "3": {
+      "1000": {
         "type": "text",
         "text": "bist du nicht dumm?",
         "answers": ["doch"],
         "link": "<end>",
 		"wlink": "2"
       },
-      "15": {
+      "1500": {
         "type" : "hint",
         "text" : "tut mi begali"
       }
